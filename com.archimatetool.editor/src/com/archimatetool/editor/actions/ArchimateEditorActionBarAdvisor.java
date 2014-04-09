@@ -515,6 +515,12 @@ extends ActionBarAdvisor {
         toolBarViews.add(new GroupMarker("end")); //$NON-NLS-1$
         toolBarViews.add(new Separator());
         
+        ///////// Workaround for Eclipse Bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=422651
+        ///////// [Trim] Toolbar right aligned in RCP application
+        IToolBarManager toolBarEditor = new ToolBarManager(SWT.FLAT);
+        coolBarManager.add(new ToolBarContributionItem(toolBarEditor, IWorkbenchActionConstants.GROUP_EDITOR));
+        ///////// End workaround
+
         // If System Property to VM arguments is "-Dshowheap=true" then Show Heap Widget
         if("true".equals(System.getProperty("showheap"))) { //$NON-NLS-1$ //$NON-NLS-2$
             IToolBarManager toolBarTools = new ToolBarManager(SWT.FLAT);
